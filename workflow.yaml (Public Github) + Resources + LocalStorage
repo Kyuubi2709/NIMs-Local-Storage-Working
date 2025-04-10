@@ -134,6 +134,37 @@ spec:
         # Replace placeholders in manifests with actual values
         sed -i "s/\NODE_SELECTOR/{{inputs.parameters.nodeSelector}}/g" deployment-patch.yaml
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" deployment-patch.yaml
-        sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g
-::contentReference[oaicite:0]{index=0}
- 
+        sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" service-patch.yaml
+        sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" kustomization.yaml
+        
+        sed -i "s/\GPU_LIMIT/{{inputs.parameters.gpuLimit}}/g" deployment-patch.yaml
+        sed -i "s/\CPU_LIMIT/{{inputs.parameters.cpuLimit}}/g" deployment-patch.yaml
+        sed -i "s/\MEMORY_LIMIT/{{inputs.parameters.memoryLimit}}M/g" deployment-patch.yaml
+        sed -i "s/\STORAGE_LIMIT/{{inputs.parameters.storageLimit}}G/g" deployment-patch.yaml
+        
+        sed -i "s/\GPU_REQUEST/{{inputs.parameters.gpuRequest}}/g" deployment-patch.yaml
+        sed -i "s/\CPU_REQUEST/{{inputs.parameters.cpuRequest}}/g" deployment-patch.yaml
+        sed -i "s/\MEMORY_REQUEST/{{inputs.parameters.memoryRequest}}M/g" deployment-patch.yaml
+        sed -i "s/\STORAGE_REQUEST/{{inputs.parameters.storageRequest}}G/g" deployment-patch.yaml
+
+        sed -i "s/\VOLUME_NAME/{{inputs.parameters.volumeName}}/g" deployment-patch.yaml
+        sed -i "s/\HOST_PATH/{{inputs.parameters.hostPath}}/g" deployment-patch.yaml
+        sed -i "s/\MOUNT_PATH/{{inputs.parameters.mountPath}}/g" deployment-patch.yaml
+
+        # Generate the manifests using kustomize
+        kustomize build . -o /workspace/modified
+        ls /workspace/modified
+    outputs:
+      artifacts:
+        - name: manifests
+          path: /workspace/modified
+
+  - name: apply-kubectl
+    inputs:
+      artifacts:
+        - name: manifests
+          path: /workspace/modified
+    container:
+      image: bitnami/kubectl:1.21 
+      command: [sh, -c]
+      args: ["kubectl apply -f /workspace/modified"]
