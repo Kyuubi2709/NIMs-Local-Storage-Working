@@ -10,7 +10,7 @@ spec:
   arguments:
     parameters:
       - name: repoUrl
-        value: "https://github.com/Kyuubi2709/NIMs-Local-Storage.git"
+        value: "https://github.com/Kyuubi2709/NIMs-Local-Storage-Working.git"
       - name: repoBranch
         value: "main"
       - name: cpuLimit
