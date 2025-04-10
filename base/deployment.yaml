@@ -31,10 +31,6 @@ spec:
       volumes:
       - name: nim-cache
         emptyDir: {}
-      - name: VOLUME_NAME
-        hostPath:
-          path: HOST_PATH
-          type: DirectoryOrCreate
       imagePullSecrets:
       - name: secret-nvidia
       restartPolicy: Always
