@@ -1,0 +1,139 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: fluxai-
+spec:
+  serviceAccountName: batch-job-sa
+  nodeSelector:
+    kubernetes.io/hostname: ""
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: repoUrl
+        value: "https://github.com/Kyuubi2709/NIMs.git"
+      - name: repoBranch
+        value: "main"
+      - name: cpuLimit
+        value: "2"
+      - name: memoryLimit
+        value: "4096"
+      - name: storageLimit
+        value: "10Gi"
+      - name: gpuLimit
+        value: "1"
+      - name: cpuRequest
+        value: "2"
+      - name: memoryRequest
+        value: "2048"
+      - name: storageRequest
+        value: "10Gi"
+      - name: gpuRequest
+        value: "1"
+      - name: deploymentInformation
+        value: "nim-cosmos"
+      - name: volumeName
+        value: "VOLUME_NAME"  # Placeholder for volume name
+      - name: hostPath
+        value: "HOST_PATH"  # Placeholder for host path
+      - name: mountPath
+        value: "MOUNT_PATH"  # Placeholder for mount path
+  templates:
+  - name: main
+    steps:
+      - - name: clone-repo
+          template: clone-repo
+          arguments:
+            parameters:
+              - name: repoUrl
+                value: "{{workflow.parameters.repoUrl}}"
+              - name: repoBranch
+                value: "{{workflow.parameters.repoBranch}}"
+      - - name: kustomize-build
+          template: kustomize-build
+          arguments:
+            parameters:
+              - name: nodeSelector
+                value: "{{workflow.parameters.nodeSelector}}"
+              - name: deploymentInformation
+                value: "{{workflow.parameters.deploymentInformation}}"
+              - name: cpuLimit
+                value: "{{workflow.parameters.cpuLimit}}"
+              - name: memoryLimit
+                value: "{{workflow.parameters.memoryLimit}}"
+              - name: storageLimit
+                value: "{{workflow.parameters.storageLimit}}"
+              - name: gpuLimit
+                value: "{{workflow.parameters.gpuLimit}}"
+              - name: cpuRequest
+                value: "{{workflow.parameters.cpuRequest}}"
+              - name: memoryRequest
+                value: "{{workflow.parameters.memoryRequest}}"
+              - name: storageRequest
+                value: "{{workflow.parameters.storageRequest}}"
+              - name: gpuRequest
+                value: "{{workflow.parameters.gpuRequest}}"
+              - name: volumeName
+                value: "{{workflow.parameters.volumeName}}"
+              - name: hostPath
+                value: "{{workflow.parameters.hostPath}}"
+              - name: mountPath
+                value: "{{workflow.parameters.mountPath}}"
+            artifacts:
+              - name: repo
+                from: "{{steps.clone-repo.outputs.artifacts.repo}}"
+      - - name: apply-kubectl
+          template: apply-kubectl
+          arguments:
+            artifacts:
+              - name: manifests
+                from: "{{steps.kustomize-build.outputs.artifacts.manifests}}"
+
+  - name: clone-repo
+    inputs:
+      parameters:
+        - name: repoUrl
+        - name: repoBranch
+    container:
+      image: alpine/git
+      command: [sh, -c]
+      args:
+        - |
+          git clone --branch {{inputs.parameters.repoBranch}} {{inputs.parameters.repoUrl}} /workspace &&
+          ls /workspace
+    outputs:
+      artifacts:
+        - name: repo
+          path: /workspace
+
+  - name: kustomize-build
+    inputs:
+      parameters:
+        - name: nodeSelector
+        - name: deploymentInformation
+        - name: cpuLimit
+        - name: memoryLimit
+        - name: storageLimit
+        - name: gpuLimit
+        - name: cpuRequest
+        - name: memoryRequest
+        - name: storageRequest
+        - name: gpuRequest
+        - name: volumeName
+        - name: hostPath
+        - name: mountPath
+      artifacts:
+        - name: repo
+          path: /workspace
+    script:
+      image: line/kubectl-kustomize
+      command: [sh]
+      source: |
+        #!/bin/sh
+        cd /workspace/overlays/cosmos-predict1-7b-2
+
+        # Replace placeholders in manifests with actual values
+        sed -i "s/\NODE_SELECTOR/{{inputs.parameters.nodeSelector}}/g" deployment-patch.yaml
+        sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" deployment-patch.yaml
+        sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g
+::contentReference[oaicite:0]{index=0}
+ 
