@@ -22,7 +22,7 @@ spec:
             - name: nim-cache
               mountPath: /opt/nim/.cache
             - name: "VOLUME_NAME"
-              mountPath: "MOUNT_PATH"
+              mountPath: MOUNT_PATH
           resources:
             limits:
               nvidia.com/gpu: GPU_LIMIT  # Placeholder for GPU limit
@@ -39,7 +39,7 @@ spec:
           emptyDir: {}
         - name: "VOLUME_NAME"
           hostPath:
-            path: "HOST_PATH"
+            path: HOST_PATH
             type: DirectoryOrCreate
       imagePullSecrets:
         - name: sercret-nvidia
