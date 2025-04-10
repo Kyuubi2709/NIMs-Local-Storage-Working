@@ -29,14 +29,14 @@ spec:
         value: "10Gi"
       - name: gpuRequest
         value: "1"
-      - name: deploymentInformation
-        value: "nim-cosmos"
       - name: volumeName
         value: "VOLUME_NAME"  # Placeholder for volume name
       - name: hostPath
         value: "HOST_PATH"  # Placeholder for host path
       - name: mountPath
         value: "MOUNT_PATH"  # Placeholder for mount path
+      # Node Selector will be dynamically added by FluxEdge
+      # Deployment Information will be dynamically added by FluxEdge
   templates:
   - name: main
     steps:
