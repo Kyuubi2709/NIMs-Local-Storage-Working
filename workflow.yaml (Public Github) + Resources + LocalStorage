@@ -148,8 +148,8 @@ spec:
         sed -i "s/\STORAGE_REQUEST/{{inputs.parameters.storageRequest}}G/g" deployment-patch.yaml
 
         sed -i "s/\VOLUME_NAME/{{inputs.parameters.volumeName}}/g" deployment-patch.yaml
-        sed -i "s/\HOST_PATH/{{inputs.parameters.hostPath}}/g" deployment-patch.yaml
-        sed -i "s/\MOUNT_PATH/{{inputs.parameters.mountPath}}/g" deployment-patch.yaml
+        sed -i "s|\\HOST_PATH|{{inputs.parameters.hostPath}}|g" deployment-patch.yaml
+        sed -i "s|\\MOUNT_PATH|{{inputs.parameters.mountPath}}|g" deployment-patch.yaml
 
         # Generate the manifests using kustomize
         kustomize build . -o /workspace/modified
