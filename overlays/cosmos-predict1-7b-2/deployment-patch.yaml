@@ -42,5 +42,5 @@ spec:
             path: HOST_PATH
             type: DirectoryOrCreate
       imagePullSecrets:
-        - name: secret-nvidia
+        - name: sercret-nvidia
       restartPolicy: Always
