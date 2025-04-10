@@ -21,8 +21,8 @@ spec:
           volumeMounts:
             - name: nim-cache
               mountPath: /opt/nim/.cache
-            - name: '16081'
-              mountPath: /mnt/data
+            - name: VOLUME_NAME
+              mountPath: MOUNT_PATH
           resources:
             limits:
               nvidia.com/gpu: GPU_LIMIT  # Placeholder for GPU limit
@@ -37,9 +37,9 @@ spec:
       volumes:
         - name: nim-cache
           emptyDir: {}
-        - name: '16081'
+        - name: VOLUME_NAME
           hostPath:
-            path: /tmp/fluxedge/16081
+            path: HOST_PATH
             type: DirectoryOrCreate
       imagePullSecrets:
         - name: secret-nvidia
