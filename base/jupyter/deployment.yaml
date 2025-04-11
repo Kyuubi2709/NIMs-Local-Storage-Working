@@ -12,6 +12,3 @@ spec:
         app: tf-notebook
     spec:
       containers: []  # No containers defined here, to be handled in patches
-#      - name: placeholder
-#        image: busybox
-#        command: ["sleep", "infinity"]
