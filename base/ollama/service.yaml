@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: -tf-notebook-service-argocd  # "-argocd" suffix identifies this service as part of an Argo Workflow deployment on Rancher
+  name: -ollama-service-argocd  # "-argocd" suffix identifies this service as part of an Argo Workflow deployment on Rancher
 spec:
   selector:
     flux-deployment-id: DEPLOYMENT_INFORMATION # Placeholder to be replaced
