@@ -28,7 +28,7 @@ spec:
             - containerPort: 8888
           env:
             - name: JUPYTER_TOKEN
-              value: "test"
+              value: "JUPYTER_TOKEN_VALUE"  # Placeholder for the token value to be injected
               #required: true             # There is no required field in Kubernetes env variables.
           volumeMounts:
             - name: "VOLUME_NAME"         # must use "" in the volumes section, not here
