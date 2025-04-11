@@ -30,7 +30,7 @@ spec:
           volumeMounts:
             - name: nim-cache
               mountPath: /opt/nim/.cache
-            - name: "VOLUME_NAME"           # must use "" in the volumes section, not here
+            - name: "VOLUME_NAME"         # must use "" in the volumes section, not here
               mountPath: MOUNT_PATH       # must NOT use "" here, or it will not deploy
           resources:
             limits:
