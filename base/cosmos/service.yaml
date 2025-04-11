@@ -4,10 +4,5 @@ metadata:
   name: nim-cosmos-service
 spec:
   selector:
-    deploymentInformation: value-service
-  ports:
-    - name: tcp
-      port: 80  # Port exposed by the service
-      protocol: TCP
-      targetPort: 8000  # Port on the pod
-  type: ClusterIP
+    deploymentInformation: DEPLOYMENT_INFORMATION # Placeholder to be replaced
+  ports: []  # No ports defined here
