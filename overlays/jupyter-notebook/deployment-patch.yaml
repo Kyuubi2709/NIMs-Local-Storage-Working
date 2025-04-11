@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: -tf-notebook
+  name: -tf-notebook-argocd
 spec:
   selector:
     matchLabels:
