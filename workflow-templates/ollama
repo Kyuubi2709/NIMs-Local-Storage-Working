@@ -14,11 +14,11 @@ spec:
       - name: repoBranch
         value: "main"
       - name: cpuResource
-        value: "2"             # CPU Limit and Request will be the same
+        value: "4"             # CPU Limit and Request will be the same
       - name: memoryResource  
-        value: "4096"          # Memory Limit and Request will be the same
+        value: "12336"          # Memory Limit and Request will be the same
       - name: storageResource
-        value: "10"            # Storage Limit and Request will be the same
+        value: "50"            # Storage Limit and Request will be the same
       - name: gpuResource
         value: "1"             # GPU Limit and Request will be the same
       - name: volumeName
