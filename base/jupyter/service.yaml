@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nim-cosmos-service
+  name: tf-notebook-service
 spec:
   selector:
     deploymentInformation: value-service
