@@ -129,7 +129,7 @@ spec:
       command: [sh]
       source: |
         #!/bin/sh
-        cd /workspace/overlays/cosmos-predict1-7b-2
+        cd /workspace/overlays/cosmos-predict1-7b
 
         # Replace placeholders in manifests with actual values
         sed -i "s/\NODE_SELECTOR/{{inputs.parameters.nodeSelector}}/g" deployment-patch.yaml
