@@ -6,6 +6,11 @@ spec:
   selector:
     flux-deployment-id: DEPLOYMENT_INFORMATION # This is a placeholder that will get replaced
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8888
+    - name: ollama-http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: webui-http
+      port: 3000
+      protocol: TCP
+      targetPort: 8081
