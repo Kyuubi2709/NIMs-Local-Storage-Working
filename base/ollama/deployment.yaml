@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: -ollama-argocd   # "-argocd" suffix identifies this service as part of an Argo Workflow deployment on Rancher
+spec:
+  selector:
+    matchLabels:
+      flux-deployment-id: DEPLOYMENT_INFORMATION
+  template:
+    metadata:
+      labels:
+        flux-deployment-id: DEPLOYMENT_INFORMATION
+    spec:
+      containers: []  # No containers defined here, to be handled in patches
