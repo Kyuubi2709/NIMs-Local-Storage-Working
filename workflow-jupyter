@@ -13,6 +13,8 @@ spec:
         value: "https://github.com/Kyuubi2709/NIMs-Local-Storage-Working.git"
       - name: repoBranch
         value: "main"
+      - name: jupyterToken
+        value: "your-jupyter-token-here"  # Pass the actual token here
       - name: cpuLimit
         value: "2"
       - name: memoryLimit
