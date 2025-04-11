@@ -6,7 +6,7 @@ namePrefix: DEPLOYMENT_INFORMATION  # This will prefix the name of everything wi
 patches:
   - target:
       kind: Deployment
-      name: -ollama-argocd  # Ensure this matches the deployment name you want to patch
+      name: -tf-notebook-argocd  # Ensure this matches the deployment name you want to patch
     patch: deployment-patch.yaml
   - target:
       kind: Service
