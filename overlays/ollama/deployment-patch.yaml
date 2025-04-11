@@ -33,7 +33,7 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: GPU_RESOURCE               # Placeholder for GPU limit
-              cpu: CPU_RESOURCE                          # Placeholder for CPU limit
+              cpu: CPU_RESOURCE1                          # Placeholder for CPU limit
               memory: MEMORY_RESOURCE                   # Placeholder for memory limit (e.g., "4000M")
               ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage limit (e.g., "10G")
             requests:
@@ -54,15 +54,15 @@ spec:
               mountPath: MOUNT_PATH
           resources:
             limits:
-              nvidia.com/gpu: GPU_RESOURCE               # Placeholder for GPU limit
-              cpu: CPU_RESOURCE                          # Placeholder for CPU limit
-              memory: MEMORY_RESOURCE                   # Placeholder for memory limit (e.g., "4000M")
-              ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage limit (e.g., "10G")
+              nvidia.com/gpu: GPU_RESOURCE2               # Placeholder for GPU limit
+              cpu: CPU_RESOURCE2                          # Placeholder for CPU limit
+              memory: MEMORY_RESOURCE2                   # Placeholder for memory limit (e.g., "4000M")
+              ephemeral-storage: STORAGE_RESOURCE2       # Placeholder for storage limit (e.g., "10G")
             requests:
-              nvidia.com/gpu: GPU_RESOURCE               # Placeholder for GPU request
-              cpu: CPU_RESOURCE                         # Placeholder for CPU request
-              memory: MEMORY_RESOURCE                   # Placeholder for memory request (e.g., "4000M")
-              ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage request (e.g., "5G")
+              nvidia.com/gpu: GPU_RESOURC2E               # Placeholder for GPU request
+              cpu: CPU_RESOURCE2                         # Placeholder for CPU request
+              memory: MEMORY_RESOURCE2                   # Placeholder for memory request (e.g., "4000M")
+              ephemeral-storage: STORAGE_RESOURCE2       # Placeholder for storage request (e.g., "5G")
       volumes:
         - name: "VOLUME_NAME"
           hostPath:
