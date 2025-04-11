@@ -4,5 +4,5 @@ metadata:
   name: tf-notebook-service
 spec:
   selector:
-    deploymentInformation: DEPLOYMENT_INFORMATION # Placeholder to be replaced
+    name: DEPLOYMENT_INFORMATION # Placeholder to be replaced
   ports: []  # No ports defined here
