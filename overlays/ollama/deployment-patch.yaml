@@ -48,7 +48,7 @@ spec:
             - containerPort: 8888
           env:
             - name: OLLAMA_BASE_URL
-              value: backplane/open-webui:0.5.20
+              value: http://127.0.0.1:11434
           volumeMounts:
             - name: "VOLUME_NAME"
               mountPath: MOUNT_PATH
