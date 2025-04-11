@@ -1,46 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  generateName: tf-notebook-
-  labels:
-    app: tf-notebook
+  name: tf-notebook
 spec:
   selector:
     matchLabels:
-      app: tf-notebook
+      name: DEPLOYMENT_INFORMATION
   template:
     metadata:
       labels:
-        app: tf-notebook
+        name: DEPLOYMENT_INFORMATION
     spec:
-      dnsPolicy: None
+      dnsPolicy: "None"  # Required when overriding dnsConfig
       dnsConfig:
         nameservers:
           - 8.8.8.8
           - 1.1.1.1
       securityContext:
         fsGroup: 0
+      nodeSelector:
+        kubernetes.io/hostname: NODE_SELECTOR  # Placeholder that will get replaced
       containers:
         - name: tf-notebook
           image: tensorflow/tensorflow:2.15.0-gpu-jupyter
-          resources:
-            limits:
-              cpu: 4000m
-              memory: 5120M
-              ephemeral-storage: 10G
-              nvidia.com/gpu: 1
-            requests:
-              cpu: 4000m
-              memory: 5120M
-              ephemeral-storage: 10G
-              nvidia.com/gpu: 1
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8888
           env:
             - name: JUPYTER_TOKEN
-              value: ""
+              value: "test"
               required: true
-            - name: TEST
-              value: ""
           volumeMounts:
-            - mountPath: /mnt/data
+            - name: VOLUME_NAME           # must use "" in the volumes section, not here
+              mountPath: MOUNT_PATH       # must NOT use "" here, or it will not deploy
+          resources:
+            limits:
+              nvidia.com/gpu: GPU_LIMIT                # Placeholder for GPU limit
+              cpu: CPU_LIMIT                           # Placeholder for CPU limit
+              memory: MEMORY_LIMIT                     # Placeholder for memory limit (e.g., "4Gi")
+              ephemeral-storage: STORAGE_LIMIT         # Placeholder for storage limit (e.g., "10Gi")
+            requests:
+              nvidia.com/gpu: GPU_REQUEST              # Placeholder for GPU request
+              cpu: CPU_REQUEST                         # Placeholder for CPU request
+              memory: MEMORY_REQUEST                   # Placeholder for memory request (e.g., "2Gi")
+              ephemeral-storage: STORAGE_REQUEST       # Placeholder for storage request (e.g., "5Gi")
+      volumes:
+        - name: "VOLUME_NAME"  # must use "" here, or it will not deploy
+          hostPath:
+            path: HOST_PATH    # must NOT use "" here, or it will not deploy
+            type: DirectoryOrCreate
+      restartPolicy: Always
