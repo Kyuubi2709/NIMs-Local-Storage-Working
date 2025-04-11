@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: tf-notebook-service
+  name: -tf-notebook-service-argocd
 spec:
   selector:
     flux-deployment-id: DEPLOYMENT_INFORMATION # This is a placeholder that will get replaced
