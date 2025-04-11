@@ -1,8 +1,7 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: -ollama-argocd
+  name: -ollama-argocd  # Remove the leading dash
 spec:
   selector:
     matchLabels:
@@ -42,13 +41,6 @@ spec:
               cpu: CPU_RESOURCE                         # Placeholder for CPU request
               memory: MEMORY_RESOURCE                   # Placeholder for memory request (e.g., "4000M")
               ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage request (e.g., "5G")
-      volumes:
-        - name: "VOLUME_NAME"
-          hostPath:
-            path: HOST_PATH
-            type: DirectoryOrCreate
-      restartPolicy: Always
-
         - name: open-webui
           image: backplane/open-webui:0.5.20
           imagePullPolicy: IfNotPresent
