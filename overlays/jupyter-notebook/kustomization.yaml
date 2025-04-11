@@ -7,8 +7,8 @@ patches:
   - target:
       kind: Deployment
       name: -tf-notebook-argocd  # Ensure this matches the deployment name you want to patch
-    patch: deployment-patch.yaml
+    path:: deployment-patch.yaml
   - target:
       kind: Service
       name: -tf-notebook-service-argocd  # Ensure this matches the deployment name you want to patch
-    patch: service-patch.yaml
+    path:: service-patch.yaml
