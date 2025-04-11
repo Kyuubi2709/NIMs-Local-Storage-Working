@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: fluxai-
+  generateName: jupyter-
 spec:
   serviceAccountName: batch-job-sa
   nodeSelector:
