@@ -10,5 +10,5 @@ patches:
     patch: deployment-patch.yaml
   - target:
       kind: Service
-      name: -ollama-service-argocd  # Ensure this matches the deployment name you want to patch
+      name: -tf-notebook-service-argocd  # Ensure this matches the deployment name you want to patch
     patch: service-patch.yaml
