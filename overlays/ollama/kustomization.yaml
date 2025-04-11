@@ -1,8 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../base/ollama               # Change this to the base folder you want to deploy
-namePrefix: DEPLOYMENT_INFORMATION  # This will prefix the name of everything with whatever is provided (you may need to add a `-` or something similar at the end so you know when our information ends)
-patchesStrategicMerge:
-  - deployment-patch.yaml
-  - service-patch.yaml
+  - ../../base/ollama  # Adjust this path as needed
+namePrefix: DEPLOYMENT_INFORMATION  # Prefix for resource names
+patches:
+  - path: deployment-patch.yaml
+    target:
+      kind: Deployment
+  - path: service-patch.yaml
+    target:
+      kind: Service
