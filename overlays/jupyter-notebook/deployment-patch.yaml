@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: DEPLOYMENT_INFORMATION
+      flux-deployment-id: DEPLOYMENT_INFORMATION
   template:
     metadata:
       labels:
-        name: DEPLOYMENT_INFORMATION
+        flux-deployment-id: DEPLOYMENT_INFORMATION
     spec:
       dnsPolicy: "None"  # Required when overriding dnsConfig
       dnsConfig:
