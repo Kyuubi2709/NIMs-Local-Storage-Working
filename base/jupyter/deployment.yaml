@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nim-cosmos
+  labels:
+    app: nim-cosmos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nim-cosmos
+  template:
+    metadata:
+      labels:
+        app: nim-cosmos
+    spec:
+      containers:
+      - name: cosmos-nim
+        image: nvcr.io/nim/nvidia/cosmos-predict1-7b-text2world:latest
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: nim-cache
+          mountPath: /opt/nim/.cache
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1
+      volumes:
+      - name: nim-cache
+        emptyDir: {}
+      imagePullSecrets:
+      - name: secret-nvidia
+      restartPolicy: Always
