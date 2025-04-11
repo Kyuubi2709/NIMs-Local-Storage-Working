@@ -4,7 +4,7 @@ metadata:
   name: tf-notebook-service
 spec:
   selector:
-    name: DEPLOYMENT_INFORMATION # This is a placeholder that will get replaced
+    flux-deployment-id: DEPLOYMENT_INFORMATION # This is a placeholder that will get replaced
   ports:
     - protocol: TCP
       port: 80
