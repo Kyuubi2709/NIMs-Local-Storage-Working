@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: -tf-notebook-argocd
+  name: -ollama-argocd
 spec:
   selector:
     matchLabels:
@@ -22,14 +22,41 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: NODE_SELECTOR
       containers:
-        - name: tf-notebook
-          image: tensorflow/tensorflow:2.15.0-gpu-jupyter
+        - name: ollama
+          image: ollama/ollama:0.6.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 11434
+            - containerPort: 8080
+          volumeMounts:
+            - name: "VOLUME_NAME"
+              mountPath: MOUNT_PATH
+          resources:
+            limits:
+              nvidia.com/gpu: GPU_RESOURCE               # Placeholder for GPU limit
+              cpu: CPU_RESOURCE                          # Placeholder for CPU limit
+              memory: MEMORY_RESOURCE                   # Placeholder for memory limit (e.g., "4000M")
+              ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage limit (e.g., "10G")
+            requests:
+              nvidia.com/gpu: GPU_RESOURCE               # Placeholder for GPU request
+              cpu: CPU_RESOURCE                         # Placeholder for CPU request
+              memory: MEMORY_RESOURCE                   # Placeholder for memory request (e.g., "4000M")
+              ephemeral-storage: STORAGE_RESOURCE       # Placeholder for storage request (e.g., "5G")
+      volumes:
+        - name: "VOLUME_NAME"
+          hostPath:
+            path: HOST_PATH
+            type: DirectoryOrCreate
+      restartPolicy: Always
+
+        - name: open-webui
+          image: backplane/open-webui:0.5.20
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8888
           env:
-            - name: JUPYTER_TOKEN
-              value: "JUPYTER_TOKEN_VALUE"
+            - name: OLLAMA_BASE_URL
+              value: backplane/open-webui:0.5.20
           volumeMounts:
             - name: "VOLUME_NAME"
               mountPath: MOUNT_PATH
