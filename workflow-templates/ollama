@@ -22,13 +22,13 @@ spec:
       - name: gpuResource
         value: "1"             # GPU Limit and Request will be the same
       - name: cpuResource2
-        value: "1"             # CPU Limit and Request will be the same
+        value: "1"             # CPU Limit and Request for "Container 2" will be the same
       - name: memoryResource2  
-        value: "1000"          # Memory Limit and Request will be the same
+        value: "1000"          # Memory Limit and Request for "Container 2" will be the same
       - name: storageResource2
-        value: "10"            # Storage Limit and Request will be the same
+        value: "10"            # Storage Limit and Request for "Container 2" will be the same
       - name: gpuResource2
-        value: "0"             # GPU Limit and Request will be the same
+        value: "0"             # GPU Limit and Request for "Container 2" will be the same
       - name: volumeName
         value: "16150"  # Placeholder for volume name
       - name: hostPath
