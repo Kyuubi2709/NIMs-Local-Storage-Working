@@ -5,10 +5,10 @@ metadata:
 spec:
   selector:
     matchLabels:
-      flux-deployment-id: tf-notebook
+      flux-deployment-id: DEPLOYMENT_INFORMATION
   template:
     metadata:
       labels:
-        flux-deployment-id: tf-notebook
+        flux-deployment-id: DEPLOYMENT_INFORMATION
     spec:
       containers: []  # No containers defined here, to be handled in patches
