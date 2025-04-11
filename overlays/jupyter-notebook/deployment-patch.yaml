@@ -29,7 +29,7 @@ spec:
           env:
             - name: JUPYTER_TOKEN
               value: "test"
-              required: true
+              #required: true             # There is no required field in Kubernetes env variables.
           volumeMounts:
             - name: "VOLUME_NAME"         # must use "" in the volumes section, not here
               mountPath: MOUNT_PATH       # must NOT use "" here, or it will not deploy
