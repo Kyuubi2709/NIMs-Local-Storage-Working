@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: -tf-notebook-argocd
+  name: -tf-notebook-argocd   # "-argocd" suffix identifies this service as part of an Argo Workflow deployment on Rancher
 spec:
   selector:
     matchLabels:
