@@ -48,8 +48,6 @@ spec:
                 value: "{{workflow.parameters.nodeSelector}}"
               - name: deploymentInformation
                 value: "{{workflow.parameters.deploymentInformation}}"
-              - name: jupyterToken
-                value: "{{workflow.parameters.jupyterToken}}"
               - name: cpuResource
                 value: "{{workflow.parameters.cpuResource}}"
               - name: memoryResource
@@ -96,7 +94,6 @@ spec:
       parameters:
         - name: nodeSelector
         - name: deploymentInformation
-        - name: jupyterToken
         - name: cpuResource
         - name: memoryResource
         - name: storageResource
@@ -119,8 +116,6 @@ spec:
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" deployment-patch.yaml
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" service-patch.yaml
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" kustomization.yaml
-
-        sed -i "s/JUPYTER_TOKEN_VALUE/{{inputs.parameters.jupyterToken}}/g" deployment-patch.yaml
         
         sed -i "s/\GPU_RESOURCE/{{inputs.parameters.gpuResource}}/g" deployment-patch.yaml
         sed -i "s/\CPU_RESOURCE/{{inputs.parameters.cpuResource}}/g" deployment-patch.yaml
