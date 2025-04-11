@@ -58,6 +58,8 @@ spec:
                 value: "{{workflow.parameters.nodeSelector}}"
               - name: deploymentInformation
                 value: "{{workflow.parameters.deploymentInformation}}"
+              - name: jupyterToken
+                value: "{{workflow.parameters.jupyterToken}}"
               - name: cpuLimit
                 value: "{{workflow.parameters.cpuLimit}}"
               - name: memoryLimit
@@ -112,6 +114,7 @@ spec:
       parameters:
         - name: nodeSelector
         - name: deploymentInformation
+        - name: jupyterToken
         - name: cpuLimit
         - name: memoryLimit
         - name: storageLimit
@@ -138,6 +141,8 @@ spec:
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" deployment-patch.yaml
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" service-patch.yaml
         sed -i "s/\DEPLOYMENT_INFORMATION/{{inputs.parameters.deploymentInformation}}/g" kustomization.yaml
+
+        sed -i "s/JUPYTER_TOKEN_VALUE/{{inputs.parameters.jupyterToken}}/g" deployment-patch.yaml
         
         sed -i "s/\GPU_LIMIT/{{inputs.parameters.gpuLimit}}/g" deployment-patch.yaml
         sed -i "s/\CPU_LIMIT/{{inputs.parameters.cpuLimit}}/g" deployment-patch.yaml
