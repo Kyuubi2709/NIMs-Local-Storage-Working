@@ -21,6 +21,14 @@ spec:
         value: "50"            # Storage Limit and Request will be the same
       - name: gpuResource
         value: "1"             # GPU Limit and Request will be the same
+      - name: cpuResource2
+        value: "1"             # CPU Limit and Request will be the same
+      - name: memoryResource2  
+        value: "1000"          # Memory Limit and Request will be the same
+      - name: storageResource2
+        value: "10"            # Storage Limit and Request will be the same
+      - name: gpuResource2
+        value: "0"             # GPU Limit and Request will be the same
       - name: volumeName
         value: "16150"  # Placeholder for volume name
       - name: hostPath
@@ -56,6 +64,14 @@ spec:
                 value: "{{workflow.parameters.storageResource}}"
               - name: gpuResource
                 value: "{{workflow.parameters.gpuResource}}"
+              - name: cpuResource2
+                value: "{{workflow.parameters.cpuResource2}}"
+              - name: memoryResource2
+                value: "{{workflow.parameters.memoryResource2}}"
+              - name: storageResource2
+                value: "{{workflow.parameters.storageResource2}}"
+              - name: gpuResource2
+                value: "{{workflow.parameters.gpuResource2}}"
               - name: volumeName
                 value: "{{workflow.parameters.volumeName}}"
               - name: hostPath
@@ -98,6 +114,10 @@ spec:
         - name: memoryResource
         - name: storageResource
         - name: gpuResource
+        - name: cpuResource2
+        - name: memoryResource2
+        - name: storageResource2
+        - name: gpuResource2
         - name: volumeName
         - name: hostPath
         - name: mountPath
@@ -121,6 +141,11 @@ spec:
         sed -i "s/\CPU_RESOURCE/{{inputs.parameters.cpuResource}}/g" deployment-patch.yaml
         sed -i "s/\MEMORY_RESOURCE/{{inputs.parameters.memoryResource}}M/g" deployment-patch.yaml
         sed -i "s/\STORAGE_RESOURCE/{{inputs.parameters.storageResource}}G/g" deployment-patch.yaml
+
+        sed -i "s/\GPU_RESOURCE2/{{inputs.parameters.gpuResource2}}/g" deployment-patch.yaml
+        sed -i "s/\CPU_RESOURCE2/{{inputs.parameters.cpuResource2}}/g" deployment-patch.yaml
+        sed -i "s/\MEMORY_RESOURCE2/{{inputs.parameters.memoryResource2}}M/g" deployment-patch.yaml
+        sed -i "s/\STORAGE_RESOURCE2/{{inputs.parameters.storageResource2}}G/g" deployment-patch.yaml
         
         sed -i "s/\VOLUME_NAME/{{inputs.parameters.volumeName}}/g" deployment-patch.yaml
         sed -i "s|\\HOST_PATH|{{inputs.parameters.hostPath}}|g" deployment-patch.yaml
