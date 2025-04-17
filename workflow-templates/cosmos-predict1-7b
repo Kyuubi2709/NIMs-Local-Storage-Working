@@ -30,11 +30,11 @@ spec:
       - name: gpuRequest
         value: "1"
       - name: volumeName
-        value: "VOLUME_NAME"  # Placeholder for volume name
+        value: "16150"  # Placeholder for volume name
       - name: hostPath
-        value: "HOST_PATH"  # Placeholder for host path
+        value: "/tmp/fluxedge/16150"  # Placeholder for host path
       - name: mountPath
-        value: "MOUNT_PATH"  # Placeholder for mount path
+        value: "/mnt/data"  # Placeholder for mount path
       # Node Selector will be dynamically added by FluxEdge
       # Deployment Information will be dynamically added by FluxEdge
   templates:
