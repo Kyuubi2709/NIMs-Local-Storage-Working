@@ -14,19 +14,19 @@ spec:
       - name: repoBranch
         value: "main"
       - name: cpuLimit
-        value: "2"
+        value: "20"
       - name: memoryLimit
-        value: "4096"
+        value: "153600"
       - name: storageLimit
-        value: "10"
+        value: "60"
       - name: gpuLimit
         value: "1"
       - name: cpuRequest
-        value: "2"
+        value: "20"
       - name: memoryRequest
-        value: "2048"
+        value: "153600"
       - name: storageRequest
-        value: "10"
+        value: "60"
       - name: gpuRequest
         value: "1"
       - name: volumeName
